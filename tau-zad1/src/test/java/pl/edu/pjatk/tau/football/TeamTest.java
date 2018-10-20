@@ -55,4 +55,11 @@ public class TeamTest {
         Assert.assertEquals((sizeBeforeDelete-1), testDb.size());
     }
 
+    @Test
+    public void readAllShouldReturnAllData() {
+        List<Team> testList = teamServiceImpl.readAll(testDb);
+        Assert.assertNotNull(testList);
+        Assert.assertEquals(testDb.size(), testList.size());
+    }
+
 }

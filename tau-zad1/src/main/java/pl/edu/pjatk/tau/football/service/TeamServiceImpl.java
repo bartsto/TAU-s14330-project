@@ -39,4 +39,9 @@ public class TeamServiceImpl implements TeamService {
     public void delete(int id, List<Team> dbName) {
         dbName.remove(id);
     }
+
+    @Override
+    public List<Team> readAll(List<Team> dbName) {
+        return dbName;
+    }
 }

@@ -13,4 +13,6 @@ public interface TeamService {
     public void update (Team team, List<Team> dbName);
 
     public void delete (int id, List<Team> dbName);
+
+    public List<Team> readAll (List<Team> dbName);
 }
