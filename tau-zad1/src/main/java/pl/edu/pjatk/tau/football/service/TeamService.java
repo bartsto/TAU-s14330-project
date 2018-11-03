@@ -8,11 +8,11 @@ public interface TeamService {
 
     public void create (int id, String name, String city, String stadium);
 
-    public Team read (int id, List<Team> dbName) throws IllegalArgumentException;
+    public Team read (int id) throws IllegalArgumentException;
 
-    public void update (Team team, List<Team> dbName);
+    public void update (Team team);
 
-    public void delete (int id, List<Team> dbName);
+    public void delete (int id);
 
-    public List<Team> readAll (List<Team> dbName);
+    public List<Team> readAll ();
 }

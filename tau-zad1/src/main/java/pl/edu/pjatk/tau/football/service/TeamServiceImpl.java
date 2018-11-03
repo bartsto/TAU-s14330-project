@@ -16,17 +16,17 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public Team read(int id, List<Team> dbName) throws IllegalArgumentException{
-        for (Team t : dbName){
-            if (t.getId() == id)
-                return t;
+    public Team read(int id) throws IllegalArgumentException{
+        for (Team t : db){
+            if (t.getId() == id){
+                return t; }
         }
         throw new IllegalArgumentException();
     }
 
     @Override
-    public void update(Team team, List<Team> dbName) {
-        for (Team t : dbName){
+    public void update(Team team) {
+        for (Team t : db){
             if (t.getId() == team.getId()){
                 t.setName(team.getName());
                 t.setCity(team.getCity());
@@ -36,12 +36,12 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void delete(int id, List<Team> dbName) {
-        dbName.remove(id);
+    public void delete(int id) {
+        db.remove(id);
     }
 
     @Override
-    public List<Team> readAll(List<Team> dbName) {
-        return dbName;
+    public List<Team> readAll() {
+        return db;
     }
 }

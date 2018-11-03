@@ -8,58 +8,50 @@ import org.junit.runners.JUnit4;
 import pl.edu.pjatk.tau.football.domain.Team;
 import pl.edu.pjatk.tau.football.service.TeamServiceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(JUnit4.class)
 public class TeamTest {
 
     TeamServiceImpl teamServiceImpl = new TeamServiceImpl();
-    List<Team> testDb = new ArrayList<>();
-    Team manUtd = new Team(0, "Manchester United", "Manchester", "Old Trafford");
-    Team liverpool = new Team (1, "Liverpool FC", "Liverpool", "Anfield Road");
-    Team arsenal = new Team (2, "Arsenal Londyn", "Arsenal", "Emirates Stadium");
-
 
     @Before
     public void beforeTest() {
-        testDb.add(manUtd);
-        testDb.add(liverpool);
-        testDb.add(arsenal);
+        teamServiceImpl.create(0, "Manchester United", "Manchester", "Old Trafford");
+        teamServiceImpl.create(1, "Liverpool FC", "Liverpool", "Anfield Road");
+        teamServiceImpl.create(2, "Arsenal Londyn", "Arsenal", "Emirates Stadium");
     }
 
     @Test
     public void teamShouldBeInDb() {
-        Assert.assertNotNull(teamServiceImpl.read(1, testDb));
-        Assert.assertEquals(manUtd, testDb.get(0));
+        Assert.assertNotNull(teamServiceImpl.read(1));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void teamShouldNotBeInDb() throws IllegalArgumentException {
-        teamServiceImpl.read(-5, testDb);
+        teamServiceImpl.read(-5);
     }
 
     @Test
     public void teamDataShouldBeUpdated() {
         Team teamUpdated = new Team(0, "Chelsea Londyn", "Londyn", "Stamford Bridge");
-        teamServiceImpl.update(teamUpdated, testDb);
-        Assert.assertEquals(testDb.get(0).getCity(), teamUpdated.getCity());
-        Assert.assertEquals(testDb.get(0).getName(), teamUpdated.getName());
-        Assert.assertEquals(testDb.get(0).getStadium(), teamUpdated.getStadium());
+        teamServiceImpl.update(teamUpdated);
+        Assert.assertEquals(teamServiceImpl.read(0).getCity(), teamUpdated.getCity());
+        Assert.assertEquals(teamServiceImpl.read(0).getName(), teamUpdated.getName());
+        Assert.assertEquals(teamServiceImpl.read(0).getStadium(), teamUpdated.getStadium());
     }
 
     @Test
     public void teamShouldBeDeleted() {
-        int sizeBeforeDelete = testDb.size();
-        teamServiceImpl.delete(2, testDb);
-        Assert.assertEquals((sizeBeforeDelete-1), testDb.size());
+        int sizeBeforeDelete = teamServiceImpl.readAll().size();
+        teamServiceImpl.delete(2);
+        Assert.assertEquals((sizeBeforeDelete-1), teamServiceImpl.readAll().size());
     }
 
     @Test
     public void readAllShouldReturnAllData() {
-        List<Team> testList = teamServiceImpl.readAll(testDb);
+        List<Team> testList = teamServiceImpl.readAll();
         Assert.assertNotNull(testList);
-        Assert.assertEquals(testDb.size(), testList.size());
+        Assert.assertEquals(teamServiceImpl.readAll().size(), testList.size());
     }
-
 }
