@@ -1,7 +1,6 @@
 package pl.edu.pjatk.tau.football.service;
 
 import pl.edu.pjatk.tau.football.domain.Team;
-
 import java.util.List;
 
 public interface TeamService {
@@ -15,4 +14,8 @@ public interface TeamService {
     public void delete (int id);
 
     public List<Team> readAll ();
+
+    public String searchFirstTeamByNotFullName(String partialText);
+
+    public void deleteTeamsByProvidedListOfTeamNames(List<String> listOfTeamsNamesToRemove);
 }

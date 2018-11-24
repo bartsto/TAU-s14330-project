@@ -1,7 +1,6 @@
 package pl.edu.pjatk.tau.football.service;
 
 import pl.edu.pjatk.tau.football.domain.Team;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +42,28 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public List<Team> readAll() {
         return db;
+    }
+
+    @Override
+    public String searchFirstTeamByNotFullName(String partialText) {
+        for (Team t : db) {
+            if (t.getName().matches("(.*)" + partialText + "(.*)")) {
+                return t.getName();
+            }
+        }
+        return "No result.";
+    }
+
+    @Override
+    public void deleteTeamsByProvidedListOfTeamNames(List<String> listOfTeamsNamesToRemove) {
+        List<Integer> listOfIndexesToDelete = new ArrayList<>();
+        for (Team t : db) {
+            if (listOfTeamsNamesToRemove.contains(t.getName())) {
+                listOfIndexesToDelete.add(t.getId());
+            }
+        }
+        for (Integer i : listOfIndexesToDelete) {
+            delete(i);
+        }
     }
 }
