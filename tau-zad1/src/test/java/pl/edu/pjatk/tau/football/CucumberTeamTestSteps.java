@@ -18,8 +18,8 @@ public class CucumberTeamTestSteps {
 
     @Given("^we will create two teams$")
     public void we_will_create_two_teams() throws Exception {
-        teamServiceImpl.create(0, "Manchester United", "Manchester", "Old Trafford");
-        teamServiceImpl.create(1, "Tottenham", "Londyn", "Wembley");
+        teamServiceImpl.create("Manchester United", "Manchester", "Old Trafford");
+        teamServiceImpl.create( "Tottenham", "Londyn", "Wembley");
     }
 
     @When("^we will search first team name by partial \"([^\"]*)\"$")
@@ -35,9 +35,9 @@ public class CucumberTeamTestSteps {
 
     @Given("^we will create three teams$")
     public void we_will_create_three_teams() throws Exception {
-        teamServiceImpl.create(0, "Manchester United", "Manchester", "Old Trafford");
-        teamServiceImpl.create(1, "Liverpool FC", "Liverpool", "Anfield Road");
-        teamServiceImpl.create(2, "Arsenal Londyn", "Arsenal", "Emirates Stadium");
+        teamServiceImpl.create("Manchester United", "Manchester", "Old Trafford");
+        teamServiceImpl.create( "Liverpool FC", "Liverpool", "Anfield Road");
+        teamServiceImpl.create("Arsenal Londyn", "Arsenal", "Emirates Stadium");
     }
 
     @When("^we will delete teams by provided list of teams names$")

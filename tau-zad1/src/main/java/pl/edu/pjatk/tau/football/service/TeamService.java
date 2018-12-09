@@ -2,12 +2,13 @@ package pl.edu.pjatk.tau.football.service;
 
 import pl.edu.pjatk.tau.football.domain.Team;
 import java.util.List;
+import java.util.Optional;
 
 public interface TeamService {
 
-    public void create (int id, String name, String city, String stadium);
+    public void create (String name, String city, String stadium);
 
-    public Team read (int id) throws IllegalArgumentException;
+    public Optional<Team> read (int id);
 
     public void update (Team team);
 

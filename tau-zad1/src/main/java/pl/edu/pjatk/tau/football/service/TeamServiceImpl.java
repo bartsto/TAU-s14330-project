@@ -1,47 +1,52 @@
 package pl.edu.pjatk.tau.football.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.edu.pjatk.tau.football.domain.Team;
+import pl.edu.pjatk.tau.football.repository.TeamRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Component
 public class TeamServiceImpl implements TeamService {
+
+    @Autowired
+    TeamRepository teamRepository;
 
     private List<Team> db = new ArrayList<>();
 
     @Override
-    public void create(int id, String name, String city, String stadium) {
-        Team team = new Team(id, name, city, stadium);
-        db.add(team);
+    public void create(String name, String city, String stadium) {
+        Team team = new Team(name, city, stadium);
+        teamRepository.save(team);
     }
 
     @Override
-    public Team read(int id) throws IllegalArgumentException{
-        for (Team t : db){
-            if (t.getId() == id){
-                return t; }
-        }
-        throw new IllegalArgumentException();
+    public Optional<Team> read(int id){
+            return teamRepository.findById(id);
     }
 
     @Override
     public void update(Team team) {
-        for (Team t : db){
-            if (t.getId() == team.getId()){
-                t.setName(team.getName());
-                t.setCity(team.getCity());
-                t.setStadium(team.getStadium());
-            }
+        Optional<Team> teamInDb = teamRepository.findById(team.getId());
+        if (teamInDb.isPresent()) {
+            Team teamToChange = teamInDb.get();
+            teamToChange.setName(team.getName());
+            teamToChange.setCity(team.getCity());
+            teamToChange.setStadium(team.getStadium());
+            teamRepository.save(teamToChange);
         }
     }
 
     @Override
     public void delete(int id) {
-        db.remove(id);
+        teamRepository.deleteById(id);
     }
 
     @Override
     public List<Team> readAll() {
-        return db;
+        return teamRepository.findAll();
     }
 
     @Override

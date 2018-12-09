@@ -1,9 +1,16 @@
 package pl.edu.pjatk.tau.football.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
 public class Team {
 
+    @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO)
     private int id;
     private String name;
     private String city;
@@ -15,8 +22,7 @@ public class Team {
     public Team() {
     }
 
-    public Team(int id, String name, String city, String stadium) {
-        this.id = id;
+    public Team(String name, String city, String stadium) {
         this.name = name;
         this.city = city;
         this.stadium = stadium;
