@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <TEAM ID="1000" CITY="Gdansk" NAME="LECHIA" STADIUM="Energa"/>
+    <TEAM ID="1001" CITY="Wroclaw" NAME="SLASK" STADIUM="Tauron"/>
+    <TEAM ID="1002" CITY="Poznan" NAME="LECH" STADIUM="Poznan Arena"/>
+    <TEAM ID="1003" CITY="Warszawa" NAME="LEGIA" STADIUM="Warsaw Arena"/>
+    <TEAM ID="1004" CITY="Szczecin" NAME="POGON" STADIUM="Szczecin Arena"/>
+    <TEAM ID="1005" CITY="Gliwice" NAME="PIAST" STADIUM="Gliwice Arena"/>
+    <TEAM ID="1006" CITY="Bialystok" NAME="JAGIELONIA" STADIUM="Jaga Arena"/>
+    <TEAM ID="1007" CITY="Plock" NAME="WISLA" STADIUM="Petrol Arena"/>
+    <TEAM ID="1008" CITY="Kielce" NAME="KORONA" STADIUM="Kolporter Arena"/>
+    <TEAM ID="1009" CITY="Lubin" NAME="ZAGLEBIE" STADIUM="KGHM Arena"/>
+</dataset>
